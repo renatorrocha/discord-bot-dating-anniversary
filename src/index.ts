@@ -6,12 +6,12 @@ const app = new Elysia()
 	.use(
 		cron({
 			name: "dating anniversary",
-			pattern: "*/10 * * * * *",
+			pattern: "*/2 * * * * *",
 			async run() {
 				try {
 					const channel = await client.channels.fetch(Bun.env.CHANNEL_ID);
 					if (channel?.isTextBased()) {
-						await channel.send("🎉 Parabéns! Hoje é dia 23, envio automático!");
+						await channel.send("❤️ Eu te amo meu amor ❤️");
 						console.log("Mensagem enviada com sucesso no Discord!");
 					}
 				} catch (error) {
