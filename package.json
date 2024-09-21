@@ -6,9 +6,13 @@
     "dev": "bun run --watch src/index.ts"
   },
   "dependencies": {
+    "@elysiajs/cron": "^1.1.1",
+    "@elysiajs/swagger": "^1.1.1",
+    "discord.js": "^14.16.2",
     "elysia": "latest"
   },
   "devDependencies": {
+    "@biomejs/biome": "1.9.2",
     "bun-types": "latest"
   },
   "module": "src/index.js"

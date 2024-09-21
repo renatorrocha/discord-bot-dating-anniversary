@@ -1,7 +1,30 @@
+import cron from "@elysiajs/cron";
 import { Elysia } from "elysia";
+import { Client, GatewayIntentBits } from "discord.js";
+import { client } from "./services/discord";
 
-const app = new Elysia().get("/", () => "Hello Elysia").listen(3000);
+const app = new Elysia()
+	.use(
+		cron({
+			name: "dating anniversary",
+			pattern: "*/10 * * * * *",
+			async run() {
+				try {
+					const channel = await client.channels.fetch(Bun.env.CHANNEL_ID);
+					if (channel && channel.isTextBased()) {
+						await channel.send("🎉 Parabéns! Hoje é dia 23, envio automático!");
+						console.log("Mensagem enviada com sucesso no Discord!");
+					} else {
+						console.log("Canal não encontrado ou não é um canal de texto.");
+					}
+				} catch (error) {
+					console.error("Erro ao enviar a mensagem no Discord:", error);
+				}
+			},
+		}),
+	)
+	.listen(3000);
 
 console.log(
-  `🦊 Elysia is running at ${app.server?.hostname}:${app.server?.port}`
+	`🦊 Elysia is running at ${app.server?.hostname}:${app.server?.port}`,
 );
