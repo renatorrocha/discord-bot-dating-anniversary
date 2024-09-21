@@ -1,6 +1,5 @@
 import cron from "@elysiajs/cron";
 import { Elysia } from "elysia";
-import { Client, GatewayIntentBits } from "discord.js";
 import { client } from "./services/discord";
 
 const app = new Elysia()
