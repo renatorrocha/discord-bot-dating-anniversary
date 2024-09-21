@@ -11,11 +11,9 @@ const app = new Elysia()
 			async run() {
 				try {
 					const channel = await client.channels.fetch(Bun.env.CHANNEL_ID);
-					if (channel && channel.isTextBased()) {
+					if (channel?.isTextBased()) {
 						await channel.send("🎉 Parabéns! Hoje é dia 23, envio automático!");
 						console.log("Mensagem enviada com sucesso no Discord!");
-					} else {
-						console.log("Canal não encontrado ou não é um canal de texto.");
 					}
 				} catch (error) {
 					console.error("Erro ao enviar a mensagem no Discord:", error);
